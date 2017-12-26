@@ -11,6 +11,13 @@ public class MenuBean {
 	private String icon;
 	private String statu;
 	private List<MenuBean>children;
+	private String str;
+	public String getStr() {
+		return str;
+	}
+	public void setStr(String str) {
+		this.str = str;
+	}
 	public List<MenuBean> getChildren() {
 		return children;
 	}
@@ -51,6 +58,11 @@ public class MenuBean {
 		return statu;
 	}
 	public void setStatu(String statu) {
+		if(statu.equals("0")){
+			this.str="启用";
+		}else{
+			this.str="禁用";
+		}
 		this.statu = statu;
 	}
 }

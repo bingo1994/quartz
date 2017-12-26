@@ -15,9 +15,15 @@
 <script type="text/javascript" src="${path }/static/js/plugins/bootstrap-table/bootstrap-table-zh-CN.js"></script>
 <script type="text/javascript" src="${path }/static/js/plugins/bootstrap-validator/bootstrapValidator.js"></script>
 <script type="text/javascript" src="${path }/static/js/plugins/bootstrap-validator/zh_CN.js"></script>
+<script type="text/javascript" src="${path }/static/js/plugins/bootstrap-table/export/bootstrap-table-export.min.js"></script>
 <link href="${path }/static/css/plugins/bootstrap-validator/bootstrapValidator.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="${path }/static/layer/layer.js"></script>
 <link href="${path }/static/layer/mobile/need/layer.css" rel="stylesheet" type="text/css">
+<link href="${path }/static/css/plugins/select2/select2.min.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="${path }/static/js/plugins/select2/select2.full.min.js"></script>
+<link href="${path }/static/js/plugins/treeview/bootstrap-treeview.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="${path }/static/js/plugins/treeview/bootstrap-treeview.js"></script>
+
 </head>
 <body>
 

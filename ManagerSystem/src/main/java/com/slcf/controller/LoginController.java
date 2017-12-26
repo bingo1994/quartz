@@ -51,6 +51,9 @@ public class LoginController {
 				i=0;//登陆成功
 				map.put("id", userBean.getUser_id());
 				request.getSession().setAttribute("USER", userBean);
+				request.getSession().setAttribute("NAME", userBean.getUser_name());
+				request.getSession().setAttribute("PASS", userBean.getUser_password());
+				request.getSession().setAttribute("ID", userBean.getUser_id());
 			}else{
 				i=1;//登录密码不正确
 			}
@@ -59,5 +62,16 @@ public class LoginController {
 		}
 		map.put("i", i);
 		return map;
+	}
+	
+	/**
+	 * 退出登陆
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/quit.action")
+	public String quitLogin(HttpServletRequest request){
+		request.getSession().invalidate();
+		return "redirect:../login.jsp";
 	}
 }

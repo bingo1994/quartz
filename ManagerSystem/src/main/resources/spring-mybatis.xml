@@ -65,11 +65,10 @@
 		 <tx:attributes>
 			<!-- propagation="REQUIRED"事务传播行为（必须）默认值 有就加入，没有就添加 isolation="DEFAULT"隔离级别（可选）数据库增删改查单独不受影响 -->
 			<tx:method name="add*" propagation="REQUIRED" isolation="DEFAULT" read-only="false" />
-			<tx:method name="update*" />
 			<tx:method name="del*" />
 			<tx:method name="query*" />
 			<tx:method name="is*" />
-			
+			<tx:method name="up*" />
 			<tx:method name="insert*" propagation="REQUIRED" />
 			<tx:method name="save*" propagation="REQUIRED" />
 			<tx:method name="update*" propagation="REQUIRED" />

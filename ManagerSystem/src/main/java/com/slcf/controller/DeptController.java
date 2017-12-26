@@ -27,16 +27,46 @@ public class DeptController {
 	public String goDeptPage(){
 		return "dept";
 	}
+	
+	/**
+	 * 部门名称验证
+	 * @param name
+	 * @param id
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/valid.action")
+	public Map<String,Object> validDept(
+			@RequestParam("name")String name,
+			@RequestParam(value="id",defaultValue="0",required=false)Integer id){
+		
+		Map<String,Object>map=new HashMap<String,Object>();
+		map.put("name", name);
+		map.put("id", id);
+		boolean flag=deptService.validDept(map);
+		
+		Map<String,Object>maps=new HashMap<String,Object>();
+		if(flag){
+			maps.put("i", 1);
+			maps.put("msg", "此部门名称可用");
+		}else{
+			maps.put("i", 0);
+			maps.put("msg", "此部门名称不可用");
+		}
+		return maps;
+	}
 	/**
 	 * 添加部门
 	 * @param dept
 	 * @param request
 	 * @return
 	 */
+	@ResponseBody
 	@RequestMapping("/addDept.action")
-	public int insertDept(DeptBean dept,HttpServletRequest request){
+	public Integer insertDept(DeptBean dept,HttpServletRequest request){
 		UserBean user=(UserBean)request.getSession().getAttribute("USER");
 		int i=deptService.insertDept(dept, user.getUser_name());
+		System.out.println(i+"++++++++++++");
 		return i;
 	}
 	
@@ -82,5 +112,27 @@ public class DeptController {
 		UserBean user=(UserBean)request.getSession().getAttribute("USER");
 		int i=deptService.upDept(dept, user.getUser_name());
 		return i;
+	}
+	
+	/**
+	 * 删除部门表信息
+	 * @param id 部门id
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/delDept.action")
+	public int delDept(@RequestParam("did")int id){
+		int i=deptService.delDept(id);
+		return i;
+	}
+	
+	/**
+	 * 查询所以部门
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/getDeptList.action")
+	public List<DeptBean> getDeptList(){
+		return deptService.getDeptList();
 	}
 }

@@ -1,5 +1,6 @@
 package com.slcf.pojo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,6 +23,27 @@ public class UserBean {
 	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
 	private Date reg_time;
 	
+	private String dept_name;
+	private String birthStr;
+	private Integer role_id;
+	public Integer getRole_id() {
+		return role_id;
+	}
+	public void setRole_id(Integer role_id) {
+		this.role_id = role_id;
+	}
+	public String getBirthStr() {
+		return birthStr;
+	}
+	public void setBirthStr(String birthStr) {
+		this.birthStr = birthStr;
+	}
+	public String getDept_name() {
+		return dept_name;
+	}
+	public void setDept_name(String dept_name) {
+		this.dept_name = dept_name;
+	}
 	public Integer getUser_id() {
 		return user_id;
 	}
@@ -80,6 +102,8 @@ public class UserBean {
 		return user_birth;
 	}
 	public void setUser_birth(Date user_birth) {
+		SimpleDateFormat sm=new SimpleDateFormat("yyyy-MM-dd");
+		birthStr=sm.format(user_birth);
 		this.user_birth = user_birth;
 	}
 	public String getUser_phone() {

@@ -1,6 +1,7 @@
 package com.slcf.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -10,16 +11,24 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import com.slcf.pojo.DeptBean;
+import com.slcf.pojo.DeptOpt;
 
 @Repository
 public interface DeptDao {
 
 	/**
+	 *根据部门名称或部门id验证部门名称是否唯一 
+	 * @param map
+	 * @return
+	 */
+	public List<DeptBean> getDeptByCon(Map<String,Object>map);
+	
+	/**
 	 * 添加部门
 	 * @param dept
 	 * @return
 	 */
-	@Insert("insert into tb_dept values(#{dept_name},#{dept_desc})")
+	@Insert("insert into tb_dept(dept_name,dept_desc) values(#{dept_name},#{dept_desc})")
 	public int insertDept(DeptBean dept);
 	
 	
@@ -30,6 +39,13 @@ public interface DeptDao {
 	//统计所以部门数量
 	@Select("select count(*) from tb_dept")
 	public int getDeptCount();
+	
+	/**
+	 * 查询所有部门
+	 * @return
+	 */
+	@Select("select * from tb_dept order by dept_id")
+	public List<DeptBean> getDeptList();
 	
 	/**
 	 * 根据部门id查询部门信息
@@ -61,5 +77,11 @@ public interface DeptDao {
 	@Delete("delete from tb_dept_opt where d_id=#{id}")
 	public int delDeptOpt(int id);
 	
-	
+	/**
+	 * 根据部门id查询部门操作表
+	 * @param id
+	 * @return
+	 */
+	@Select("select * from tb_dept_opt where d_id=#{id}")
+	public List<DeptOpt> getOptList(int id);
 }

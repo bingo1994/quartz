@@ -1,6 +1,7 @@
 package com.slcf.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,6 +61,50 @@ public class DeptServiceImpl implements DeptService {
 			j=deptDao.insertDeptOpt(dept.getDept_id(), name, "更新");
 		}
 		return j;
+	}
+
+	/**
+	 * 根据部门id删除
+	 */
+	public int delDept(int did) {
+		int i=deptDao.delDeptOpt(did);
+		int j=0;
+		if(i>0){
+			j=deptDao.delDeptById(did);
+		}
+		return j;
+	}
+
+	/**
+	 * 验证是否唯一
+	 */
+	public boolean validDept(Map<String, Object> map) {
+		boolean flag=true;
+		List<DeptBean>list=deptDao.getDeptByCon(map);
+		int x=(Integer)map.get("id");
+		
+		if(x!=0){//修改
+			if((list.size()==1&&x==list.get(0).getDept_id())){
+				flag=true;
+			}else if(list.size()==0){
+				flag=true;
+			}else{
+				flag=false;
+			}
+		}else{//添加
+			if(list.size()>0){
+				flag=false;
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * 查询所以部门
+	 * @return
+	 */
+	public List<DeptBean> getDeptList() {
+		return deptDao.getDeptList();
 	}
 
 }
